@@ -1,0 +1,5 @@
+{
+    "tasks": {
+        "create-problem": "deno run --allow-read --allow-write ./scripts/createProblemDirectory.ts"
+    }
+}
