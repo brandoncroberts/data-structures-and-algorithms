@@ -1,31 +1,60 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
-	"name": "Node.js & TypeScript",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
-	"customizations": {
-		"vscode": {
-			"extensions": [
+  "name": "Node.js & TypeScript",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bookworm",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+		"ghcr.io/devcontainers-community/features/deno:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "chmod +x .devcontainer/scripts/postCreateCommand.sh && .devcontainer/scripts/postCreateCommand.sh && chsh -s /bin/zsh",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
 				"denoland.vscode-deno",
-				"GitHub.copilot",
-				"GitHub.copilot-chat"
-			],
-			"settings": {
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "GitHub.vscode-pull-request-github",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "[snippets]": {
+          "editor.snippetSuggestions": "top"
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": { "zsh": { "path": "/bin/zsh" } },
+        "files.autoSave": "onFocusChange",
+        "editor.fontSize": 14,
 				"editor.defaultFormatter": "denoland.vscode-deno",
-				"editor.formatOnSave": true
-			}
-		}
-	},
-	"features": {
-		"ghcr.io/devcontainers-community/features/deno:1": {}
-	}
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-	// Configure tool-specific properties.
-	// "customizations": {},
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+        "editor.autoClosingBrackets": "always",
+        "editor.autoClosingDelete": "always",
+        "editor.autoClosingOvertype": "always",
+        "editor.autoClosingQuotes": "always",
+        "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+        "workbench.sideBar.location": "right",
+        "editor.formatOnSave": true,
+        "workbench.colorTheme": "Solarized Light",
+        "editor.fontFamily": "'MesloLGS NF'",
+        "editor.minimap.enabled": false,
+        "editor.formatOnPaste": true,
+        "git.enableSmartCommit": true,
+        "git.autofetch": true
+      }
+    }
+  },
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "root"
 }
