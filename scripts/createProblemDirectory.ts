@@ -3,7 +3,7 @@ import { ensureDirSync } from "https://deno.land/std@0.106.0/fs/mod.ts";
 import { join } from "https://deno.land/std@0.106.0/path/mod.ts";
 
 function createProblemDirectory(problemName: string) {
-  const baseDir = join(Deno.cwd(), "problems", problemName);
+  const baseDir = join(Deno.cwd(), "src", "algorithms", problemName);
   if (!existsSync(baseDir)) {
     ensureDirSync(baseDir);
   }
