@@ -14,10 +14,27 @@ function createProblemDirectory(problemName: string) {
     if (!existsSync(filePath)) {
       let content = "";
       if (file === "main.ts") {
-        content += `export const ${problemName.replace(
-          /-/g,
-          "_"
-        )} = () => {};\n`;
+        content += `/**
+ * Description:
+ *
+ * @param {number} n Param Description:
+ * @returns {number} Return Description:
+ *
+ * @example
+ * // Example 1:
+ * // Input:
+ * // Output:
+ * // Explanation:
+ *
+ * @example
+ * // Example 2:
+ * // Input:
+ * // Output:
+ * // Explanation:
+ *
+ * @see https://
+ */
+export const ${problemName.replace(/-/g, "_")} = () => {};\n`;
       } else if (file === "main_test.ts") {
         content += `import { assertEquals } from "jsr:@std/assert";\n`;
         content += `import { ${problemName.replace(
