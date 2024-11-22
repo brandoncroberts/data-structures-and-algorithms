@@ -1,23 +1,23 @@
-type NullableNode = Node | null;
+type NullableNode<T> = Node<T> | null;
 
-export class Node {
-  value: number;
-  next: NullableNode;
+export class Node<T> {
+  value: T;
+  next: NullableNode<T>;
 
-  constructor(value: number, next: NullableNode = null) {
+  constructor(value: T, next: NullableNode<T> = null) {
     this.value = value;
     this.next = next;
   }
 }
 
-export class LinkedList {
-  head: NullableNode = null;
-  tail: NullableNode = null;
+export class LinkedList<T> {
+  head: NullableNode<T> = null;
+  tail: NullableNode<T> = null;
   length: number = 0;
 
-  constructor(value?: number) {
+  constructor(value?: T) {
     if (value !== undefined) {
-      const newNode = new Node(value);
+      const newNode: Node<T> = new Node(value);
       this.head = newNode;
       this.tail = newNode;
       this.length = 1;

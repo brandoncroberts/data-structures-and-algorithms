@@ -5,7 +5,7 @@ Deno.test(
   "LinkedList initializes correctly with a single node when initialized with a value",
   () => {
     const linkedList = new LinkedList(5);
-    const expectedLinkedList: InstanceType<typeof LinkedList> = {
+    const expectedLinkedList: InstanceType<typeof LinkedList<number>> = {
       head: new Node(5),
       tail: new Node(5),
       length: 1,
@@ -35,7 +35,7 @@ Deno.test(
 
 Deno.test("Node initializes correctly with a value and no next node", () => {
   const node = new Node(5);
-  const expectedNode: InstanceType<typeof Node> = {
+  const expectedNode: InstanceType<typeof Node<number>> = {
     value: 5,
     next: null,
   };
@@ -47,7 +47,7 @@ Deno.test("Node initializes correctly with a value and no next node", () => {
 Deno.test("Node initializes correctly with a value and a next node", () => {
   const nextNode = new Node(10);
   const node = new Node(5, nextNode);
-  const expectedNode: InstanceType<typeof Node> = {
+  const expectedNode: InstanceType<typeof Node<number>> = {
     value: 5,
     next: nextNode,
   };
