@@ -10,6 +10,25 @@ export class Node<T> {
   }
 }
 
+/**
+ * Description:
+ *
+ * @param {number} n Param Description:
+ * @returns {number} Return Description:
+ *
+ * @example
+ * // Example 1:
+ * // Input:
+ * // Output:
+ * // Explanation:
+ *
+ * @example
+ * // Example 2:
+ * // Input:
+ * // Output:
+ * // Explanation:
+ *
+ */
 export class LinkedList<T> {
   head: NullableNode<T> = null;
   tail: NullableNode<T> = null;
@@ -19,7 +38,7 @@ export class LinkedList<T> {
     if (value !== undefined) {
       const newNode: Node<T> = new Node(value);
       this.head = newNode;
-      this.tail = newNode;
+      this.tail = this.head;
       this.length = 1;
     }
   }
