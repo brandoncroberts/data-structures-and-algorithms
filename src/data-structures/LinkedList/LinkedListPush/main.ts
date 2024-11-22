@@ -1,26 +1,5 @@
-/**
- * Description:
- *
- * @param {number} n Param Description:
- * @returns {number} Return Description:
- *
- * @example
- * // Example 1:
- * // Input:
- * // Output:
- * // Explanation:
- *
- * @example
- * // Example 2:
- * // Input:
- * // Output:
- * // Explanation:
- *
- */
-import {
-  LinkedList as LinkedListConstructor,
-  Node,
-} from "../LinkedListConstructor/main.ts";
+import { LinkedList as LinkedListConstructor } from "../LinkedListConstructor/main.ts";
+import { Node } from "../Node/main.ts";
 
 export class LinkedList<T> extends LinkedListConstructor<T> {
   push(value: T): void {

@@ -1,34 +1,5 @@
-type NullableNode<T> = Node<T> | null;
+import { Node, NullableNode } from "../Node/main.ts";
 
-export class Node<T> {
-  value: T;
-  next: NullableNode<T>;
-
-  constructor(value: T, next: NullableNode<T> = null) {
-    this.value = value;
-    this.next = next;
-  }
-}
-
-/**
- * Description:
- *
- * @param {number} n Param Description:
- * @returns {number} Return Description:
- *
- * @example
- * // Example 1:
- * // Input:
- * // Output:
- * // Explanation:
- *
- * @example
- * // Example 2:
- * // Input:
- * // Output:
- * // Explanation:
- *
- */
 export class LinkedList<T> {
   head: NullableNode<T> = null;
   tail: NullableNode<T> = null;
