@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { LinkedList } from "../LinkedList/main.ts";
+import { LinkedList } from "../../LinkedList/main.ts";
 
 Deno.test("LinkedList push method adds a single element correctly", () => {
   const list = new LinkedList<number>();

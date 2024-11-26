@@ -1,5 +1,5 @@
-import { LinkedList } from "../LinkedList/main.ts";
+import { LinkedList } from "../../LinkedList/main.ts";
 const list = new LinkedList(5);
 Deno.bench("LinkedList push", () => {
-  list.pop();
+  list.push(10);
 });

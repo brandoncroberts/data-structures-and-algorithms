@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { Node } from "./main.ts";
+import { Node } from "../../Node/main.ts";
 
 Deno.test("Node initializes correctly with a value and no next node", () => {
   const node = new Node(5);

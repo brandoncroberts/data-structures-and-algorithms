@@ -1,6 +1,6 @@
 import { assertEquals } from "jsr:@std/assert";
-import { LinkedList } from "../LinkedList/main.ts";
-import { Node } from "../Node/main.ts";
+import { LinkedList } from "../../LinkedList/main.ts";
+import { Node } from "../../Node/main.ts";
 
 Deno.test(
   "LinkedList initializes correctly with a single node when initialized with a value",

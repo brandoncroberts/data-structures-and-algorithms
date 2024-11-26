@@ -1,6 +1,6 @@
 import { assertEquals } from "jsr:@std/assert";
-import { LinkedList } from "../LinkedList/main.ts";
-import { Node } from "../Node/main.ts";
+import { LinkedList } from "../../LinkedList/main.ts";
+import { Node } from "../../Node/main.ts";
 
 Deno.test(
   "LinkedList pop method retuns last node, and sets tail to second to last node with next value of null",
