@@ -62,4 +62,20 @@ export class LinkedList<T> {
     this.length++;
     return this.length;
   }
+
+  shift(): NullableNode<T> | undefined {
+    if (this.length === 0) return undefined;
+    const initialHead = this.head;
+
+    if (initialHead?.next) {
+      this.head = initialHead.next;
+      initialHead.next = null;
+    } else {
+      this.tail = null;
+      this.head = null;
+    }
+
+    this.length--;
+    return initialHead;
+  }
 }
