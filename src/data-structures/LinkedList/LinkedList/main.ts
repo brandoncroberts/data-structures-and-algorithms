@@ -19,7 +19,6 @@ export class LinkedList<T> {
       this.tail.next = newNode;
       this.tail = newNode;
     } else {
-      // if !this.tail it is an empty LinkedList, and therefore newNode is the first item in the LinkedList
       this.head = newNode;
       this.tail = newNode;
     }
@@ -47,5 +46,20 @@ export class LinkedList<T> {
     this.tail = prev;
     this.length--;
     return current;
+  }
+
+  unshift(value: T): number {
+    const newNode = new Node(value);
+
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+    return this.length;
   }
 }
