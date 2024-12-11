@@ -35,3 +35,55 @@ export const canBeReferrer = (
     return canBeReferrer(referrer, urlTwo, urlData);
   });
 };
+
+// ... existing code ...
+
+/**
+ * Iterative solution using BFS to determine if urlTwo could have been a referrer for urlOne
+ * @param urlOne The destination URL
+ * @param urlTwo The potential referrer URL
+ * @param urlData Array of URL and referrer data
+ * @returns boolean indicating if urlTwo could have been a referrer for urlOne
+ */
+export const canBeReferrerIterative = (
+  urlOne: string,
+  urlTwo: string,
+  urlData: UrlReferrer[],
+): boolean => {
+  // If URLs are the same, return false as a page cannot refer to itself
+  if (urlOne === urlTwo) return false;
+
+  // Keep track of visited URLs to prevent cycles
+  const visited = new Set<string>();
+
+  // Queue for BFS
+  const queue: string[] = [urlOne];
+
+  while (queue.length > 0) {
+    const currentUrl = queue.shift()!;
+
+    // Skip if we've already visited this URL
+    if (visited.has(currentUrl)) continue;
+    visited.add(currentUrl);
+
+    // Find the current URL's data
+    const urlData_ = urlData.find((data) => data.url === currentUrl);
+    if (!urlData_) continue;
+
+    // Check referrers
+    for (const referrer of urlData_.referrer) {
+      // Skip null referrers
+      if (referrer === null) continue;
+
+      // If we found urlTwo as a referrer, return true
+      if (referrer === urlTwo) return true;
+
+      // Add unvisited referrers to the queue
+      if (!visited.has(referrer)) {
+        queue.push(referrer);
+      }
+    }
+  }
+
+  return false;
+};

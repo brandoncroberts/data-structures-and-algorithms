@@ -1,6 +1,6 @@
-import { canBeReferrer } from "./main.ts";
+import { assertEquals } from "jsr:@std/assert";
+import { canBeReferrer, canBeReferrerIterative } from "./main.ts";
 
-// Test cases
 const urlData = [
   { url: "cart", referrer: ["search", "buy"] },
   { url: "search", referrer: ["/"] },
@@ -8,8 +8,36 @@ const urlData = [
   { url: "buy", referrer: ["search"] },
 ];
 
-console.log(canBeReferrer("cart", "search", urlData)); // true (direct referrer)
-console.log(canBeReferrer("cart", "/", urlData)); // true (indirect referrer)
-console.log(canBeReferrer("cart", "buy", urlData)); // true (direct referrer)
-console.log(canBeReferrer("cart", "cart", urlData)); // false (same URL)
-console.log(canBeReferrer("cart", "unknown", urlData)); // false (non-existent URL)
+Deno.test("canBeReferrer identifies direct referrers", () => {
+  assertEquals(canBeReferrer("cart", "search", urlData), true);
+  assertEquals(canBeReferrer("cart", "buy", urlData), true);
+});
+
+Deno.test("canBeReferrer identifies indirect referrers", () => {
+  assertEquals(canBeReferrer("cart", "/", urlData), true);
+});
+
+Deno.test("canBeReferrer returns false for same URL", () => {
+  assertEquals(canBeReferrer("cart", "cart", urlData), false);
+});
+
+Deno.test("canBeReferrer returns false for non-existent URLs", () => {
+  assertEquals(canBeReferrer("cart", "unknown", urlData), false);
+});
+
+Deno.test("canBeReferrerIterative identifies direct referrers", () => {
+  assertEquals(canBeReferrerIterative("cart", "search", urlData), true);
+  assertEquals(canBeReferrerIterative("cart", "buy", urlData), true);
+});
+
+Deno.test("canBeReferrerIterative identifies indirect referrers", () => {
+  assertEquals(canBeReferrerIterative("cart", "/", urlData), true);
+});
+
+Deno.test("canBeReferrerIterative returns false for same URL", () => {
+  assertEquals(canBeReferrerIterative("cart", "cart", urlData), false);
+});
+
+Deno.test("canBeReferrerIterative returns false for non-existent URLs", () => {
+  assertEquals(canBeReferrerIterative("cart", "unknown", urlData), false);
+});
