@@ -22,44 +22,6 @@
  */
 
 /**
- * Brute Force Solution
- *
- * Time Complexity: O(n)
- * - We loop through each string once (2n steps)
- * - We loop through unique characters once
- * - Total is roughly 3 passes through the data
- *
- * Space Complexity: O(k) where k is unique characters
- * - Creates two separate objects (maps)
- * - Each map stores the count of unique characters
- * - For example: "hello" would store 4 characters (h,e,l,o)
- */
-export const isAnagramBruteForce = (s: string, t: string): boolean => {
-  if (s.length !== t.length) return false;
-  // Creates first hashmap
-  const sMap: Record<string, number> = {};
-  // Creates second hashmap
-  const tMap: Record<string, number> = {};
-
-  // First loop through entire string s
-  for (let i = 0; i < s.length; i++) {
-    sMap[s[i]] = (sMap[s[i]] ?? 0) + 1;
-  }
-
-  // Second loop through entire string t
-  for (let j = 0; j < t.length; j++) {
-    tMap[t[j]] = (tMap[t[j]] ?? 0) + 1;
-  }
-
-  // Third loop through keys to compare
-  const tKeys = Object.keys(tMap);
-  for (let k = 0; k < tKeys.length; k++) {
-    if (sMap[tKeys[k]] !== tMap[tKeys[k]]) return false;
-  }
-  return true;
-};
-
-/**
  * Optimized Solution
  *
  * Time Complexity: O(n)
@@ -97,6 +59,28 @@ export const isAnagram = (s: string, t: string): boolean => {
   // If yes: all characters matched (it's an anagram)
   // If no: character frequencies didn't match (not an anagram)
   return charCount.every((count) => count === 0);
+};
+
+export const isAnagramMap = (s: string, t: string): boolean => {
+  if (s.length !== t.length) return false;
+
+  const charMap: Record<string, number> = {};
+
+  // Count characters in the first string
+  for (const char of s) {
+    charMap[char] = (charMap[char] || 0) + 1;
+  }
+
+  // Decrement counts using the second string
+  for (const char of t) {
+    // If a character is not in the map or its count is zero, they can't be anagrams
+    if (!charMap[char]) {
+      return false;
+    }
+    charMap[char]--;
+  }
+
+  return true; // If the loop completes, it's an anagram
 };
 
 // Example walkthrough with s = "cat" and t = "tac":
